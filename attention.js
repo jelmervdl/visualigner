@@ -30,6 +30,8 @@ var attention = function(container, labelsA, labelsB, linkData) {
     return p;
   };
 
+  html.select('figcaption').text(linkData.map(({ai,bi}) => `${ai}-${bi}`).join(' '));
+
   html.select('svg .labels').attr('transform', 'translate(' + (width + nodeMargin * 3) + ', 0)');
 
   html.select('svg').selectAll('*').remove();
@@ -102,7 +104,7 @@ var attention = function(container, labelsA, labelsB, linkData) {
       .attr('y1', nodeSizeA + nodeMargin * 2 - 2)
       .attr('y2', nodeSizeA + 4);
 
-  cellA.append('text').style('opacity', 0.8).text('A').attr('dx', nodeSizeA / 2).attr('dy', nodeSizeA / 2 + 1);
+  cellA.append('text').style('opacity', 0.8).text((d, i) => i).attr('dx', nodeSizeA / 2).attr('dy', nodeSizeA / 2 + 1);
 
   cellA.append('text')
       .attr('class', 'label')
@@ -184,7 +186,7 @@ var attention = function(container, labelsA, labelsB, linkData) {
       .attr('y1', 0)
       .attr('y2', -nodeMargin * 2 + 5);
 
-  cellB.append('text').style('opacity', 0.8).text('B').attr('dx', nodeSizeB / 2).attr('dy', nodeSizeB / 2 + 1);
+  cellB.append('text').style('opacity', 0.8).text((d,i) => i).attr('dx', nodeSizeB / 2).attr('dy', nodeSizeB / 2 + 1);
 
   cellB.append('text')
       .attr('class', 'label')
