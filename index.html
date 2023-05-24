@@ -6,26 +6,28 @@
 		<link rel="stylesheet" href="attention.css">
 	</head>
 	<body>
-		<textarea id="data" cols="120" rows="1">▁Hall o ▁We lt !	▁H ello ▁world !	0-0 1-1 2-2 3-2 4-3</textarea>
-		<figure id="attentional-ex2" class="l-page">
-			<svg>
-					<defs>
-					<marker id="edgeArrowhead" viewBox="0 -5 10 10" markerWidth="6" markerHeight="10" orient="auto" refX="5" refY="0">
-					<path d="M0,-5L5,0L0,5" fill="none" stroke="#666"></path>
-					</marker>
-					<marker id="edgeArrowheadLeft" viewBox="0 -5 10 10" markerWidth="6" markerHeight="10" orient="auto" refX="0" refY="0">
-					<path d="M5,-5L0,0L5,5" fill="none" stroke="#666"></path>
-					</marker>
-					</defs>
-					<g class="labels" style="display: none;">
-					<text transform="translate(0, 20)">output text</text>
-					<text transform="translate(0, 65)">network B</text>
-					<text transform="translate(0, 185)">network A</text>
-					<text transform="translate(0, 233)">input text</text>
-					</g>
-			</svg>
-			<figcaption>Diagram derived from Fig. 3 of <a href="https://arxiv.org/pdf/1409.0473.pdf">Bahdanau, <i>et al.</i> 2014</a></figcaption>
-		</figure>
+		<textarea id="data" cols="120" rows="4">▁Hall o ▁We lt !	▁H ello ▁world !	0-0 1-1 2-2 3-2 4-3</textarea>
+		<template id="attention-template">
+			<figure id="" class="attentional-ex2">
+				<svg>
+						<defs>
+						<marker id="edgeArrowhead" viewBox="0 -5 10 10" markerWidth="6" markerHeight="10" orient="auto" refX="5" refY="0">
+						<path d="M0,-5L5,0L0,5" fill="none" stroke="#666"></path>
+						</marker>
+						<marker id="edgeArrowheadLeft" viewBox="0 -5 10 10" markerWidth="6" markerHeight="10" orient="auto" refX="0" refY="0">
+						<path d="M5,-5L0,0L5,5" fill="none" stroke="#666"></path>
+						</marker>
+						</defs>
+						<g class="labels" style="display: none;">
+						<text transform="translate(0, 20)">output text</text>
+						<text transform="translate(0, 65)">network B</text>
+						<text transform="translate(0, 185)">network A</text>
+						<text transform="translate(0, 233)">input text</text>
+						</g>
+				</svg>
+			</figure>
+		</template>
+		<div id="output"></div>
 		<script src="d3.v4.min.js"></script>
 		<script src="attention.js"></script>
 	</body>

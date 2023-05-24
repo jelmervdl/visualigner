@@ -1,9 +1,9 @@
 
-var attention = function(labelsA, labelsB, linkData) {
+var attention = function(container, labelsA, labelsB, linkData) {
   var nodeMargin = 10;
   var networkMargin = 120;
 
-  var html = d3.select('#attentional-ex2');
+  var html = d3.select(container);
   var outerWidth = html.node().getBoundingClientRect().width;
   var outerHeight = html.node().getBoundingClientRect().height;
   var margin = {top: 36, right: nodeMargin, bottom: 0, left: nodeMargin};
@@ -231,16 +231,35 @@ var attention = function(labelsA, labelsB, linkData) {
 };
 
 function render(value) {
+  const template = document.getElementById('attention-template');
+
+  const output = document.getElementById('output');
+  output.innerHTML = '';
+
   value.split('\n').forEach(line => {
     const cols = line.split('\t');
-    attention(
-      cols[0].split(' '),
-      cols[1].split(' '),
-      cols[2].split(' ').map(pair => {
-        const [a, b] = pair.split('-');
-        return {ai: parseInt(a), bi: parseInt(b), data: 1.0}
-      })
-    )
+
+    if (cols.length != 3) return;
+
+    const node = output.appendChild(template.content.firstElementChild.cloneNode(true));
+
+    try {
+      attention(
+        node,
+        cols[0].split(' '),
+        cols[1].split(' '),
+        cols[2].split(' ').map(pair => {
+          const [a, b] = pair.split('-');
+          return {ai: parseInt(a), bi: parseInt(b), data: 1.0}
+        }));
+    } catch (err) {
+      node.innerHTML = '';
+
+      const message = document.createElement('p');
+      message.appendChild(document.createTextNode(err.toString()));
+      
+      node.appendChild(message);
+    }
   })
 }
 
